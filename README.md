@@ -162,7 +162,7 @@ The `MarkovDriver` sets a `RANDOM_SEED` to initialize the random number generato
 
 You can also test your `HashMarkov` class with the `MarkovTest` [JUnit tests](#junit-tests). Don't forget to edit the `getModel` method of `MarkovTest` to use a `HashMarkov` implementation when running your tests.
 
-Note that JUnit tests and Gradescope tests will not check the efficiency of the `HashMarkov` implementation. Instead, you will need to rely on your conceptual understanding and empirical timing data which you can aquire by running `MarkovDriver` using a `HashMarkov` implementation. You will be asked to reason about both in the Analysis section.
+Note that JUnit tests will not check the efficiency of the `HashMarkov` implementation. Instead, you will need to rely on your conceptual understanding and empirical timing data which you can aquire by running `MarkovDriver` using a `HashMarkov` implementation. 
 
 
 
