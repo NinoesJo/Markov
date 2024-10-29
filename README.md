@@ -13,8 +13,6 @@ See [the details document](docs/details.md) for information on using Git, starti
 - [JUnit Tests](#junit-tests)
 - [Coding Part 1: Developing the WordGram Class](#coding-part-1-developing-the-wordgram-class)
 - [Coding Part 2: Developing the HashMarkov Class](#coding-part-2-developing-the-hashmarkov-class)
-- [Analysis Questions](#analysis-questions)
-- [Submitting and Grading](#submitting-and-grading)
 
 
 ## Introduction
@@ -166,77 +164,5 @@ You can also test your `HashMarkov` class with the `MarkovTest` [JUnit tests](#j
 
 Note that JUnit tests and Gradescope tests will not check the efficiency of the `HashMarkov` implementation. Instead, you will need to rely on your conceptual understanding and empirical timing data which you can aquire by running `MarkovDriver` using a `HashMarkov` implementation. You will be asked to reason about both in the Analysis section.
 
-Once you are confident that your `HashMarkov` code is correct, you are ready to submit to Gradescope and then move on to the analysis questions.
 
-
-## Analysis Questions
-
-Answer the following questions in your analysis. You'll submit your analysis as a separate PDF as a separate assignment to Gradescope. Answering these questions will require you to run the driver code to generate timing data and to reason about the algorithms and data structures you have implemented.
-
-### Working Together for Analysis
-
-You're *stronlgy encouraged* to work with others in 201 in completing the analysis section for this project. In future projects you'll work on an entire project in pairs, and submit once for the pair. For this project, however, each person should submit independently. If you actively work with one or more people in 201, *please make sure* you list each other in the analysis document you turn in.
-
-### Big-O/O-notation for analysis questions
-
-For the analysis, let $`N`$ denote the length/number of words of the random text being generated. Let $`T`$ denote the length/number of words of the training text. Assume that *all words are of at most a constant length* (say, no more than 35 characters). To help in using the files in the `data` folder, here are is some information about total number of words and number of different words in some of the files:
-
-|file    |# different words| # total words|
-|--------|---------------|--------------|
-|alice.txt| 5,910 | 28,196 |
-|hawthorne.txt| 14,123| 85,753|
-|kjv10.txt| 34,027 | 823,135|
-|littlebrother.txt|18,304| 119,986|
-|melville.txt| 4,256 | 14,353|
-|romeo.txt| 6,394 | 25,788 |
-| shakespeare.txt | 67,505 | 901,325|
-
-### Question 1
-
-What is the asymptotic (big O) runtime complexity of each of the methods: `setTraining()` `getRandomText()` for the `BaseMarkov` impelementation in terms of $`N`$ and $`T`$? State your answers, and justify them in *both* of the following ways.
-
-- *Theory*. Explain why you expect `setTraining()` and `getRandomText()` for `BaseMarkov` to have the stated runtime complexity by referencing the algorithms/data structures/code used. Explain the complexity of each operation/method, accounting for any looping, in the code. You may assume that `nextInt` is a constant time operation to generate a random number and `split()` has runtime complexity $`O(T)`$ when called on the training text.
-- *Experiment*. Run the main method of `MarkovDriver` with *at least* 3 different data files of varying sizes $`T`$ (it is fine to use `alice.txt` for one of them). For each, run the main method with *at least* 3 different values of `TEXT_SIZE` (which corresponds to $`N`$). So you should have a total of at least 9 data points; use these to fill out a table like the one shown below. *Explain how your empirical data does or does not conform to your expectations for the runtime complexity of `getRandomText()`.*
-
-| Data file    | $`T`$    | $`N`$    | Training Time (s)    | Generating time (s)    |
-| ------------ | -------- | -------- | -------------------- | ---------------------- |
-| alice.txt    | 28,196   | 100      | 0.012                | 0.060                  |
-| ...          | ....     | ...      | ...                  | ...                    |
-
-*Suggestions*: You will likely get the clearest data if you include very different values for $`T`$ and $`N`$, and preferably larger values -- see the table of sizes above to help you choose text files you'll use. You can set $`N`$ directly to much larger values by changing `TEXT_SIZE`, for example to 1,000 or 10,000. When doing so, you can set `PRINT_MODE` to `false` in `MarkovDriver` to avoid having a large amount of text printed to your terminal. Note that `BaseMarkov` is not necessarily an efficient implementation, so it may take a long time to run with large $`T`$ and $`N`$. You do not need to run anything for multiple minutes just for data collection for this assignment.  
-
-### Question 2
-
-Same as Question 1, but for `HashMarkov` instead of `BaseMarkov`: What is the asymptotic (big O) runtime complexity of the methods: `setTraining()` and `getRandomText()` for the `HashMarkov` impelementation in terms of $`N`$ and $`T`$? State your answers, and justify them in *theory and experiment* exactly as you did for Question 1. 
-
-You can use the same training texts and values for $`N`$ as you chose in question 1, with the same suggestions mentioned there. Note that, implemented correctly, `HashMarkov` should be noticably more efficient at generating random text than `BaseMarkov`, and this should be evident in your analysis.
-
-### Question 3
-
-Markov models like the one you implemented in this project are one example of a larger research area in artificial intelligence (AI) and machine learning (ML) called *generative models* for *natural language processing*. Currently, one of the state-of-the-art models is called *GPT*, created by [OpenAI](https://openai.com/about/). OpenAI states that their "mission is to ensure that artificial general intelligence (AGI)—...highly autonomous systems that outperform humans at most economically valuable work—benefits all of humanity." 
-
-GPT is not, however, open-source, meaning that the underlying source code of the model is not freely available and the model is only accessible via API calls. Read this short article about open source code in artificial intelligence: Can’t Access GPT-3? Here’s GPT-J — Its Open-Source Cousin [accessible via this link](https://towardsdatascience.com/cant-access-gpt-3-here-s-gpt-j-its-open-source-cousin-8af86a638b11). 
-
-Answer both of the following related questions:
-- What do you think of OpenAI's stated mission? In particular, do you think that "highly autonomous systems that outperform humans at most economically valuable work" can benefit all of humanity? Why or why not?
-- Do you think new research code in AI/ML should be more open source? Why, or why not? 
-
-There is no right or wrong answer to either question; we are looking for one or two paragraphs of thoughtful reflection.
-
-
-## Submitting and Grading
-You will submit the assignment on Gradescope. You can access Gradescope through the tab on Sakai. Please take note that changes/commits on GitLab are NOT automatically synced to Gradescope. You are welcome to submit as many times as you like, only the most recent submission will count for a grade.
-
-Don't forget to upload a PDF for the analysis part of this assignment and mark where you answer each question. This is a separate submission in Gradescope.
-
-*Do not forget to record 20 minutes of your coding work*.
-
-### Grading
-
-| Section.  | points |
-|-----------|--------|
-| WordGram  | 8   |
-| HashMarkov| 8   |
-| Analysis  | 12  |
-| Video | 2 |
 
